@@ -1,0 +1,714 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap");
+
+:root {
+    --panel: #171b19;
+    --line: rgba(244, 239, 231, 0.13);
+    --text: #f4efe7;
+    --soft: #d9d1c5;
+    --muted: #aaa9a1;
+    --coral: #ff7666;
+    --radius: 8px;
+    --content-width: 1120px;
+    --content-gutter: 24px;
+    --nav-height: 68px;
+    --shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    background:
+        radial-gradient(circle at 12% 4%, rgba(255, 118, 102, 0.1), transparent 28rem),
+        linear-gradient(140deg, #101312 0%, #141714 48%, #0d0f0e 100%);
+    color: var(--text);
+    font-family: "Nanum Gothic", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.7;
+    letter-spacing: 0;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 100% 8px;
+    opacity: 0.35;
+}
+
+ul,
+li,
+dl,
+dt,
+dd,
+p,
+span {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:link,
+a:visited {
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+}
+
+#container {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+header {
+    position: relative;
+    z-index: 1000;
+    background: rgba(16, 19, 18, 0.78);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(16px);
+}
+
+header.is-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(16, 19, 18, 0.94);
+    border-bottom-color: rgba(255, 118, 102, 0.28);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.32);
+}
+
+nav {
+    width: min(calc(100% - (var(--content-gutter) * 2)), var(--content-width));
+    min-height: var(--nav-height);
+    margin: 0 auto;
+    background: transparent;
+}
+
+.bar {
+    min-height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.menuWrap {
+    width: 100%;
+}
+
+.main-menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+.main-menu > li {
+    width: auto;
+    text-align: center;
+}
+
+.main-menu > li > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    color: var(--muted);
+    font-weight: 800;
+    transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.main-menu > li:hover a,
+.main-menu > li > a.fixed {
+    color: var(--text);
+    border-color: rgba(255, 118, 102, 0.42);
+    background: rgba(255, 118, 102, 0.13);
+}
+
+.logo {
+    flex: 0 0 auto;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255, 118, 102, 0.45);
+    border-radius: 50%;
+    background:
+        linear-gradient(rgba(16, 19, 18, 0.16), rgba(16, 19, 18, 0.16)),
+        url("../images/weirdcat.jpg") center / cover no-repeat;
+    box-shadow: 0 0 28px rgba(255, 118, 102, 0.16);
+}
+
+.section {
+    min-height: auto;
+    padding: 92px 0;
+    scroll-margin-top: var(--nav-height);
+}
+
+#profile.section,
+#project.section,
+#footer.section {
+    min-height: auto;
+}
+
+#profile > .proWrap,
+#project .git-repository {
+    width: min(calc(100% - (var(--content-gutter) * 2)), var(--content-width));
+    margin-inline: auto;
+}
+
+.bigTitle {
+    width: min(calc(100% - (var(--content-gutter) * 2)), var(--content-width));
+    margin: 0 auto 34px;
+    color: var(--text);
+    font-size: clamp(30px, 4vw, 52px);
+    font-weight: 800;
+    line-height: 1.25;
+    text-align: left;
+    filter: none;
+}
+
+#profile {
+    background: rgba(255, 255, 255, 0.025);
+    border-block: 1px solid var(--line);
+}
+
+#profile > .proWrap {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    font-size: 14px;
+}
+
+#profile > .proWrap > .me {
+    width: auto;
+    min-height: 360px;
+    margin: 0;
+    padding: 24px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+    box-shadow: var(--shadow);
+    filter: none;
+}
+
+#profile h1,
+#profile h2,
+#profile h5,
+#profile h6 {
+    color: var(--text);
+    text-shadow: none;
+}
+
+#profile h2 {
+    margin: 0 0 20px;
+    padding: 0;
+    font-size: 22px;
+    font-weight: 800;
+    text-align: left;
+}
+
+#profile h5,
+#profile > .proWrap > .record > ul > h6 {
+    margin: 18px 0 10px;
+    padding: 0 0 8px;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    background: transparent;
+    color: var(--coral);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+#profile > .proWrap > .me > .skill {
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    text-align: left;
+}
+
+tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    margin: 4px;
+    padding: 5px 10px;
+    border: 1px solid rgba(255, 118, 102, 0.28);
+    border-radius: var(--radius);
+    background: rgba(255, 118, 102, 0.08);
+    color: var(--soft);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.tool,
+.base,
+.lib,
+.data {
+    background: rgba(255, 118, 102, 0.08);
+    color: var(--soft);
+}
+
+#profile > .proWrap > .tools {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(rgba(16, 19, 18, 0.2), rgba(16, 19, 18, 0.76)),
+        url("../images/thunder.jpg") center / cover no-repeat;
+}
+
+#profile > .proWrap > .tools > h2 {
+    position: absolute;
+    left: 24px;
+    bottom: 22px;
+    margin: 0;
+    padding: 0;
+}
+
+#profile > .proWrap > .record > .education,
+#profile > .proWrap > .record > .courses {
+    padding: 0;
+}
+
+#profile > .proWrap > .record > ul > li {
+    margin: 8px 0;
+    color: var(--muted);
+}
+
+#profile > .proWrap > .record > ul > li span {
+    color: var(--coral);
+    font-weight: 800;
+}
+
+.profileImg {
+    width: 132px;
+    height: 132px;
+    margin: 20px 0 12px;
+    border: 1px solid rgba(255, 118, 102, 0.45);
+    border-radius: var(--radius);
+    background-image:
+        linear-gradient(rgba(16, 19, 18, 0.08), rgba(16, 19, 18, 0.08)),
+        url("../images/weirdcat.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+#profile h1 {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+    text-align: left;
+}
+
+#project {
+    background: transparent;
+}
+
+#project .git-repository h3 {
+    margin-bottom: 14px;
+    color: var(--text);
+    font-size: 28px;
+    font-weight: 800;
+    text-shadow: none;
+}
+
+#project .git-repository {
+    margin-top: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+#project .git-repository h3,
+#project .git-repository h5 {
+    grid-column: 1 / -1;
+}
+
+#project .git-repository h5 {
+    display: block;
+    margin: -8px 0 10px;
+    color: var(--muted);
+    font-weight: 400;
+}
+
+#project .git-repository br {
+    display: none;
+}
+
+#project .git-repository p {
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 20px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background:
+        linear-gradient(rgba(16, 19, 18, 0.2), rgba(16, 19, 18, 0.78)),
+        var(--panel);
+    background-size: cover;
+    background-position: center;
+    box-shadow: var(--shadow);
+    color: var(--soft);
+    overflow-wrap: anywhere;
+    transition: transform 180ms ease, border-color 180ms ease, filter 180ms ease;
+}
+
+#project .git-repository p:hover {
+    border-color: rgba(255, 118, 102, 0.48);
+    filter: saturate(1.06) brightness(1.05);
+    transform: translateY(-4px);
+}
+
+#project .git-repository p:nth-of-type(2) {
+    background-image:
+        linear-gradient(rgba(16, 19, 18, 0.18), rgba(16, 19, 18, 0.82)),
+        url("../images/sc_01.png");
+}
+
+#project .git-repository p:nth-of-type(1) {
+    background-image:
+        linear-gradient(rgba(16, 19, 18, 0.18), rgba(16, 19, 18, 0.82)),
+        url("../images/sc_02.png");
+}
+
+#project .git-repository p:nth-of-type(3) {
+    background-image:
+        linear-gradient(rgba(16, 19, 18, 0.18), rgba(16, 19, 18, 0.82)),
+        url("../images/sc_03.png");
+}
+
+#project .git-repository p:nth-of-type(n+4) {
+    background-image:
+        linear-gradient(rgba(16, 19, 18, 0.2), rgba(16, 19, 18, 0.82)),
+        url("../images/soon2.jpg");
+}
+
+#project .git-repository p:nth-of-type(6) {
+    background-image:
+        linear-gradient(rgba(16, 19, 18, 0.2), rgba(16, 19, 18, 0.82)),
+        url("../images/sc_06.png");
+}
+
+#project .git-repository label {
+    display: block;
+    width: fit-content;
+    padding: 8px 10px;
+    border-radius: var(--radius);
+    background: rgba(95, 119, 95, 0.9);
+    color: var(--text);
+    font-weight: 800;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+}
+
+#project .git-repository a.link {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    padding: 6px 10px;
+    border-radius: var(--radius);
+    background: rgba(255, 118, 102, 0.12);
+    color: var(--coral);
+    font-size: 13px;
+}
+
+footer {
+    width: 100%;
+    min-height: auto;
+    padding: 92px 0 0;
+    background: rgba(255, 255, 255, 0.025);
+    border-top: 1px solid var(--line);
+    color: var(--text);
+    font-size: 16px;
+}
+
+#footer.section {
+    min-height: auto;
+    padding: 92px 0 0;
+}
+
+footer h3 {
+    color: var(--text);
+    text-shadow: none;
+    margin-bottom: 14px;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.message-wrap {
+    width: min(calc(100% - (var(--content-gutter) * 2)), var(--content-width));
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(240px, 0.75fr) minmax(0, 1.25fr);
+    gap: 24px;
+    align-items: start;
+}
+
+.message-copy {
+    padding: 24px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+    box-shadow: var(--shadow);
+}
+
+.message-copy p {
+    color: var(--muted);
+}
+
+.message-copy .contact {
+    margin: 22px 0 18px;
+    padding: 18px 0;
+    border-block: 1px solid var(--line);
+}
+
+.message-copy .contact li {
+    display: grid;
+    grid-template-columns: 84px minmax(0, 1fr);
+    gap: 12px;
+    margin: 8px 0;
+    color: var(--muted);
+}
+
+.message-copy .contact label {
+    color: var(--coral);
+    font-weight: 800;
+}
+
+.message-form {
+    padding: 24px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+    box-shadow: var(--shadow);
+}
+
+.message-form label {
+    display: block;
+    margin-bottom: 16px;
+    color: var(--soft);
+    font-weight: 800;
+}
+
+.message-form input,
+.message-form textarea {
+    width: 100%;
+    margin-top: 8px;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: rgba(16, 19, 18, 0.72);
+    color: var(--text);
+    font: inherit;
+    outline: 0;
+}
+
+.message-form input:focus,
+.message-form textarea:focus {
+    border-color: rgba(255, 118, 102, 0.6);
+}
+
+.message-form textarea {
+    resize: vertical;
+}
+
+.message-form button {
+    min-height: 46px;
+    padding: 10px 18px;
+    border: 0;
+    border-radius: var(--radius);
+    background: var(--coral);
+    color: #17100f;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 180ms ease, background 180ms ease;
+}
+
+.message-form button:hover {
+    background: #ff8a7c;
+    transform: translateY(-2px);
+}
+
+footer .sns {
+    width: min(280px, 100%);
+    height: auto;
+    margin: 8px 0 0;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+footer .sns img {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--panel);
+    transition: transform 180ms ease, border-color 180ms ease;
+}
+
+footer .snsimg:hover img {
+    filter: none;
+    border-color: rgba(255, 118, 102, 0.48);
+    transform: translateY(-3px);
+    cursor: pointer;
+}
+
+footer > p {
+    width: 100%;
+    min-height: auto;
+    margin: 72px 0 0;
+    padding: 24px 16px;
+    background: rgba(0, 0, 0, 0.22);
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+    text-shadow: none;
+}
+
+#topbutton {
+    display: none;
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: rgba(23, 27, 25, 0.86);
+    color: var(--coral);
+    cursor: pointer;
+    outline: 0;
+    transition: transform 180ms ease, border-color 180ms ease;
+}
+
+#topbutton:hover {
+    color: var(--coral);
+    border-color: rgba(255, 118, 102, 0.48);
+    transform: translateY(-3px);
+}
+
+#topbutton svg {
+    width: 30px;
+    height: 30px;
+}
+
+@media (max-width: 1024px) {
+    :root {
+        --content-width: 900px;
+        --content-gutter: 24px;
+    }
+
+    #profile > .proWrap,
+    #project .git-repository {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #project .git-repository h3,
+    #project .git-repository h5 {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --content-gutter: 16px;
+        --nav-height: 112px;
+    }
+
+    .bar {
+        min-height: var(--nav-height);
+        flex-direction: column-reverse;
+        align-items: stretch;
+        justify-content: center;
+        gap: 12px;
+        padding: 14px 0;
+    }
+
+    .logo {
+        align-self: flex-start;
+    }
+
+    .main-menu {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 2px;
+    }
+
+    .main-menu > li {
+        flex: 0 0 auto;
+    }
+
+    .section,
+    #footer.section {
+        padding: 64px 0;
+    }
+
+    #profile > .proWrap,
+    #project .git-repository,
+    .message-wrap {
+        grid-template-columns: 1fr;
+    }
+
+    #project .git-repository p {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --content-gutter: 12px;
+    }
+
+    .main-menu {
+        font-size: 13px;
+    }
+
+    .main-menu > li > a {
+        padding-inline: 10px;
+    }
+
+    #profile > .proWrap > .me {
+        padding: 18px;
+    }
+
+    footer .sns img {
+        width: 40px;
+        height: 40px;
+    }
+}
